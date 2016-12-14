@@ -22,7 +22,7 @@ namespace Sermo.Data.AdoNet
             this.databaseFactory = databaseFactory; 
         }
 
-        public void CreateRoom(string name)
+        public void CreateRoom(long id, string name)
         {
             using(var connection = databaseFactory.CreateConnection())
             {
@@ -40,6 +40,11 @@ namespace Sermo.Data.AdoNet
                     parameter.ParameterName = "name";
                     parameter.Value = name;
                     command.Parameters.Add(parameter);
+                    var parameter2 = command.CreateParameter();
+                    parameter2.DbType = DbType.Int64;
+                    parameter2.ParameterName = "id";
+                    parameter2.Value = id;
+                    command.Parameters.Add(parameter2);
 
                     command.ExecuteNonQuery();
                 }
@@ -67,8 +72,9 @@ namespace Sermo.Data.AdoNet
                     {
                         while (reader.Read())
                         {
+                            var id = reader.GetInt32(reader.GetOrdinal("id"));
                             var name = reader.GetString(reader.GetOrdinal("name"));
-                            allRooms.Add(new RoomRecord(name));
+                            allRooms.Add(new RoomRecord(id, name));
                         }
                     }
                 }

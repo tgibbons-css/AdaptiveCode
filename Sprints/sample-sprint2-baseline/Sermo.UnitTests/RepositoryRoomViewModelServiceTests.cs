@@ -45,9 +45,9 @@ namespace Sermo.UnitTests
         public void GetAllRoomsDelegatesToRoomViewModelMapper()
         {
             var service = CreateService();
-            var roomOne = new RoomRecord("Room one");
-            var roomTwo = new RoomRecord("Room two");
-            var roomThree = new RoomRecord("Room three");
+            var roomOne = new RoomRecord(1,"Room one");
+            var roomTwo = new RoomRecord(2,"Room two");
+            var roomThree = new RoomRecord(3,"Room three");
             var rooms = new List<RoomRecord> { roomOne, roomTwo, roomThree };
             mockRoomRepository.Setup(repository => repository.GetAllRooms()).Returns(rooms);
 
@@ -63,12 +63,12 @@ namespace Sermo.UnitTests
         {
             var service = CreateService();
             var roomViewModel = new RoomViewModel { Name = "Test Room" };
-            var roomRecord = new RoomRecord("Test Room");
+            var roomRecord = new RoomRecord(1,"Test Room");
             mockRoomViewModelMapper.Setup(mapper => mapper.MapRoomViewModelToRoomRecord(roomViewModel)).Returns(roomRecord);
 
             service.CreateRoom(roomViewModel);
 
-            mockRoomRepository.Verify(repository => repository.CreateRoom(roomRecord.Name));
+            mockRoomRepository.Verify(repository => repository.CreateRoom(roomRecord.Id, roomRecord.Name));
         }
 
         [Test]

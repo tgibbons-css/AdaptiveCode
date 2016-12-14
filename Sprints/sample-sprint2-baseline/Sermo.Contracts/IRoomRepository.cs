@@ -8,7 +8,7 @@ namespace Sermo.Data.Contracts
 {
     public interface IRoomRepository
     {
-        void CreateRoom(string name);
+        void CreateRoom(long id, string name);
 
         IEnumerable<RoomRecord> GetAllRooms();
     }

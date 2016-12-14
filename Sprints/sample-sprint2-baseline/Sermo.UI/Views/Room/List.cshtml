@@ -12,7 +12,7 @@
         <tr>
             <th>
                 @room.Name.ToString();
-                @Html.ActionLink("View messages", "Messages", new { id = 121 })
+                @Html.ActionLink("View messages", "Messages", new { id = @room.ID })
             </th>
         </tr>
     }

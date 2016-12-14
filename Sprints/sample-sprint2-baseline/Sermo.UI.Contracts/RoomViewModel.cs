@@ -9,6 +9,12 @@ namespace Sermo.UI.Contracts
 {
     public class RoomViewModel
     {
+        public int ID
+        {
+            get;
+            set;
+        }
+
         [Required]
         public string Name
         {

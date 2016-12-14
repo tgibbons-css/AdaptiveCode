@@ -49,7 +49,7 @@ namespace Sermo.UI.Controllers
         public void CreateRoom(RoomViewModel roomViewModel)
         {
             var roomRecord = mapper.MapRoomViewModelToRoomRecord(roomViewModel);
-            roomRepository.CreateRoom(roomRecord.Name);
+            roomRepository.CreateRoom(roomRecord.Id, roomRecord.Name);
         }
 
         public void AddMessage(MessageViewModel messageViewModel)

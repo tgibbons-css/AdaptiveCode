@@ -14,12 +14,12 @@ namespace Sermo.Infrastructure.Contracts
     {
         public RoomViewModel MapRoomRecordToRoomViewModel(RoomRecord roomRecord)
         {
-            return new RoomViewModel { Name = roomRecord.Name };
+            return new RoomViewModel { ID = roomRecord.Id, Name = roomRecord.Name };
         }
 
         public RoomRecord MapRoomViewModelToRoomRecord(RoomViewModel roomViewModel)
         {
-            return new RoomRecord(roomViewModel.Name);
+            return new RoomRecord(roomViewModel.ID, roomViewModel.Name);
         }
 
         public MessageViewModel MapMessageRecordToMessageViewModel(MessageRecord messageRecord)
