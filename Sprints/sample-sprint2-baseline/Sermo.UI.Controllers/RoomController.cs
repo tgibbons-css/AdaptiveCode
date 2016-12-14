@@ -56,9 +56,9 @@ namespace Sermo.UI.Controllers
         }
 
         [HttpGet]
-        public ActionResult Messages(int roomID)
+        public ActionResult Messages(int id)
         {
-            var messageListViewModel = new MessageListViewModel(reader.GetRoomMessages(roomID));
+            var messageListViewModel = new MessageListViewModel(reader.GetRoomMessages(id));
 
             return View(messageListViewModel);
         }

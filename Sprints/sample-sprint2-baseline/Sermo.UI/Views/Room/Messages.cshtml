@@ -1,0 +1,18 @@
+﻿@model Sermo.UI.ViewModels.MessageListViewModel
+
+@{
+    ViewBag.Title = "Messages";
+}
+
+<h2>Message List</h2>
+@foreach (var msg in Model.Messages)
+{
+    <p>
+        Message: @msg.Text
+    </p>
+}
+
+<p>
+    @Html.ActionLink("Return to room view", "List")
+</p>
+

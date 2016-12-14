@@ -24,7 +24,9 @@ namespace Sermo.Data.AdoNet
 
         public void AddMessageToRoom(int roomID, string authorName, string text)
         {
-            using(var connection = databaseFactory.CreateConnection())
+            // skip database factory for now since it does not work yet
+            using (var connection = new System.Data.SqlClient.SqlConnection())
+            //using (var connection = databaseFactory.CreateConnection())
             {
                 connection.ConnectionString = applicationSettings.GetValue("SermoConnectionString");
                 connection.Open();
@@ -63,7 +65,9 @@ namespace Sermo.Data.AdoNet
         {
             var roomMessages = new List<MessageRecord>();
 
-            using(var connection = databaseFactory.CreateConnection())
+            // skip database factory for now since it does not work yet
+            using (var connection = new System.Data.SqlClient.SqlConnection())
+            //using (var connection = databaseFactory.CreateConnection())
             {
                 connection.ConnectionString = applicationSettings.GetValue("SermoConnectionString");
                 connection.Open();
@@ -74,12 +78,19 @@ namespace Sermo.Data.AdoNet
                     command.CommandText = "dbo.get_room_messages";
                     command.CommandType = CommandType.StoredProcedure;
                     command.Transaction = transaction;
+                    //added parameter for roomID
+                    var parameter = command.CreateParameter();
+                    parameter.DbType = DbType.String;
+                    parameter.ParameterName = "roomID";
+                    parameter.Value = roomID;
+                    command.Parameters.Add(parameter);
 
                     using (var reader = command.ExecuteReader(CommandBehavior.CloseConnection))
                     {
+                        int idIndex = reader.GetOrdinal("id");  //GetOrdinal should be called before loop to optimize performance
                         while (reader.Read())
                         {
-                            var id = reader.GetString(reader.GetOrdinal("id"));
+                            var id = reader.GetInt64(idIndex);
                             var authorName = reader.GetString(reader.GetOrdinal("author_name"));
                             var text = reader.GetString(reader.GetOrdinal("text"));
                             roomMessages.Add(new MessageRecord(roomID, authorName, text));
