@@ -15,9 +15,9 @@ namespace Sermo.UI.Controllers
     {
         public RepositoryRoomViewModelService(IRoomRepository roomRepository, IMessageRepository messageRepository, IViewModelMapper mapper)
         {
-            Contract.Requires<ArgumentNullException>(roomRepository != null);
-            Contract.Requires<ArgumentNullException>(messageRepository != null);
-            Contract.Requires<ArgumentNullException>(mapper != null);
+            //Contract.Requires<ArgumentNullException>(roomRepository != null);
+            //Contract.Requires<ArgumentNullException>(messageRepository != null);
+            //Contract.Requires<ArgumentNullException>(mapper != null);
 
             this.roomRepository = roomRepository;
             this.messageRepository = messageRepository;

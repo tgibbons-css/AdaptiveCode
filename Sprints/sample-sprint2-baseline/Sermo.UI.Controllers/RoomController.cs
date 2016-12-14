@@ -15,8 +15,8 @@ namespace Sermo.UI.Controllers
     {
         public RoomController(IRoomViewModelReader reader, IRoomViewModelWriter writer)
         {
-            Contract.Requires<ArgumentNullException>(reader != null);
-            Contract.Requires<ArgumentNullException>(writer != null);
+            //Contract.Requires<ArgumentNullException>(reader != null);
+            //Contract.Requires<ArgumentNullException>(writer != null);
 
             this.reader = reader;
             this.writer = writer;

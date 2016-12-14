@@ -15,8 +15,8 @@ namespace Sermo.Data.AdoNet
     {
         public AdoNetMessageRepository(IApplicationSettings applicationSettings, DbProviderFactory databaseFactory)
         {
-            Contract.Requires<ArgumentNullException>(applicationSettings != null);
-            Contract.Requires<ArgumentNullException>(databaseFactory != null);
+            //Contract.Requires<ArgumentNullException>(applicationSettings != null);
+            //Contract.Requires<ArgumentNullException>(databaseFactory != null);
 
             this.applicationSettings = applicationSettings;
             this.databaseFactory = databaseFactory; 

@@ -15,8 +15,8 @@ namespace Sermo.Data.AdoNet
     {
         public AdoNetRoomRepository(IApplicationSettings applicationSettings, DbProviderFactory databaseFactory)
         {
-            Contract.Requires<ArgumentNullException>(applicationSettings != null);
-            Contract.Requires<ArgumentNullException>(databaseFactory != null);
+            //Contract.Requires<ArgumentNullException>(applicationSettings != null);
+            //Contract.Requires<ArgumentNullException>(databaseFactory != null);
 
             this.applicationSettings = applicationSettings;
             this.databaseFactory = databaseFactory; 
@@ -49,8 +49,9 @@ namespace Sermo.Data.AdoNet
         public IEnumerable<RoomRecord> GetAllRooms()
         {
             var allRooms = new List<RoomRecord>();
-
-            using(var connection = databaseFactory.CreateConnection())
+            // skip database factory for now since it does not work yet
+            using (var connection = new System.Data.SqlClient.SqlConnection())
+            //using (var connection = databaseFactory.CreateConnection())
             {
                 connection.ConnectionString = applicationSettings.GetValue("SermoConnectionString");
                 connection.Open();

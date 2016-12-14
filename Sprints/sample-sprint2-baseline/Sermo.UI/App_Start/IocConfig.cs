@@ -29,6 +29,8 @@ namespace Sermo.UI.App_Start
 
             container.RegisterType<DbProviderFactory>(new InjectionFactory(c => 
                 DbProviderFactories.GetFactory(c.Resolve<IApplicationSettings>().GetValue("DatabaseProviderName"))));
+            // need also register this 
+            container.RegisterType<IMessageRepository, AdoNetMessageRepository>();
         }
 
         private static IUnityContainer container;

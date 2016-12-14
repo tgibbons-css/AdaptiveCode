@@ -1,19 +1,22 @@
-﻿@model IEnumerable<Sermo.UI.ViewModels.RoomListViewModel>
+﻿@model Sermo.UI.ViewModels.RoomListViewModel
+@* remove IEnumerable from @model IEnumerable<Sermo.UI.ViewModels.RoomListViewModel>*@
 
 @{
     ViewBag.Title = "List";
 }
 
-<h2>List</h2>
-
+<h2>Room List</h2>
+<table class="table">
+    @foreach (var room in Model.Rooms)
+    {
+        <tr>
+            <th>
+                @room.Name.ToString();
+                @Html.ActionLink("View messages", "Messages", new { id = 121 })
+            </th>
+        </tr>
+    }
+</table>
 <p>
     @Html.ActionLink("Create new room", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th></th>
-    </tr>
-
-    Placeholder...
-
-</table>
