@@ -1,33 +1,33 @@
-﻿@model Sermo.UI.ViewModels.CreateRoomViewModel
+﻿@* @model Sermo.UI.ViewModels.CreateRoomViewModel    *@
 
-@{
-    ViewBag.Title = "Create Room";
-}
+    @{
+        ViewBag.Title = "Create Room";
+    }
 
-<h2>Create</h2>
+    <h2>Create a new room -- This is currently not working</h2>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form">
-        <h4>Room</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <label for="NewRoomName">Name</label>
-            <input type="text" name="NewRoomName" class="form-control" placeholder="Enter room name..." />
+    @using (Html.BeginForm("Create", "Room", new { id = 444 }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form">
+            <h4>Room</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label for="NewRoomName">Name</label>
+                <input type="text" name="NewRoomName" class="form-control" placeholder="Enter room name..." />
+            </div>
+            <input type="submit" value="Create" class="btn btn-default" />
         </div>
-        <input type="submit" value="Create" class="btn btn-default" />
+    }
+
+    <br />
+
+    <div>
+        @Html.ActionLink("Back to List", "List")
     </div>
-}
 
-<br />
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
